@@ -1,0 +1,40 @@
+[package]
+name = "ebpf-sockops-rs"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+aya-bpf = { git = "https://github.com/aya-rs/aya", branch = "main" }
+
+
+[[bin]]
+name = "skmsg-rs"
+path = "src/skmsg.rs"
+
+
+[[bin]]
+name = "sockops-rs"
+path = "src/sockops.rs"
+
+[profile.dev]
+opt-level = 3
+debug = false
+debug-assertions = false
+overflow-checks = false
+lto = true
+panic = "abort"
+incremental = false
+codegen-units = 1
+rpath = false
+strip = "symbols"
+
+[profile.release]
+lto = true
+panic = "abort"
+codegen-units = 1
+strip = "symbols"
+
+[workspace]
+members = []
